@@ -26,7 +26,7 @@ CREATE INDEX index2 ON medico USING hash(especialidade); /* Dado não haver bitm
 /* 
 Dividindo o numero de bytes de cada bloco pelo numero de bytes do registo, obtemos que cada bloco tem 2 registos. Como os medicos estão 
 distribuidos uniformemente pelas 6 especialidades, temos a seletividade é de 1/6, logo a probabilidade de nao ter o registo desejado no bloco é de (5/6)^2 = 69,44%. 
-Deste mode concluimos que teremos de ler 100% - 69,44% = 30,555% dos blocos nesta querie com um indice, logo concluimos que é benefico utilizar um
+Deste modo concluimos que teremos de ler 100% - 69,44% = 30,555% dos blocos nesta query com um indice, logo concluimos que é benefico utilizar um
 indice para reduzir leituras no disco. 
 Optamos então por utilizar um indice btree denso e desordenado com chave de pesquisa especialidade na tabela btree pois utiliza um numero pequeno de niveis, 
 devido a sua propriedade logaritmica.

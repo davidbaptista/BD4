@@ -35,7 +35,7 @@ create table f_presc_venda(
 	id_data_registo integer NOT NULL,
 	id_inst integer NOT NULL,
 	CONSTRAINT pk_id_presc_venda PRIMARY KEY (id_presc_venda),
-	--CONSTRAINT fk_id_presc_venda FOREIGN KEY (id_presc_venda) REFERENCES prescricao_venda(num_venda) ON UPDATE CASCADE ON DELETE CASCADE, /* erro */
+	CONSTRAINT fk_id_presc_venda FOREIGN KEY (id_presc_venda) REFERENCES prescricao_venda(num_venda) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_id_medico FOREIGN KEY (id_medico) REFERENCES medico(num_cedula) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_id_data_registo FOREIGN KEY (id_data_registo) REFERENCES d_tempo(id_tempo) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_id_inst FOREIGN KEY (id_inst) REFERENCES d_instituicao(id_inst)  ON UPDATE CASCADE ON DELETE CASCADE
