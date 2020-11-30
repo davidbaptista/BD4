@@ -24,34 +24,34 @@ create table d_instituicao
 	num_concelho NUMERIC(10, 0),
 
 	CONSTRAINT pk_id_inst PRIMARY KEY (id_inst),
-	CONSTRAINT fk_nome_instituicao FOREIGN KEY(nome) REFERENCES instituicao(nome) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT fk_num_regiao FOREIGN KEY (num_regiao) REFERENCES regiao(num_regiao) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT fk_num_concelho FOREIGN KEY (num_concelho) REFERENCES concelho(num_concelho) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_nome_instituicao FOREIGN KEY(nome) REFERENCES instituicao(nome) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_num_regiao FOREIGN KEY (num_regiao) REFERENCES regiao(num_regiao) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_num_concelho FOREIGN KEY (num_concelho) REFERENCES concelho(num_concelho) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 create table f_presc_venda(
 	id_presc_venda NUMERIC(10,0) NOT NULL,
 	id_medico NUMERIC(10, 0) NOT NULL,
-	id_data_registo NUMERIC(10,0) NOT NULL,
-	id_inst NUMERIC(10,0) NOT NULL,
+	id_data_registo integer NOT NULL,
+	id_inst integer NOT NULL,
 	CONSTRAINT pk_id_presc_venda PRIMARY KEY (id_presc_venda),
-	CONSTRAINT fk_id_presc_venda FOREIGN KEY (id_presc_venda) REFERENCES prescricao_venda ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT fk_id_medico FOREIGN KEY (id_medico) REFERENCES medico(num_cedula) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT fk_id_data_registo FOREIGN KEY (id_data_registo) REFERENCES d_tempo(id_tempo) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT fk_id_inst FOREIGN KEY (id_inst) REFERENCES d_instituicao(id_inst) ON DELETE CASCADE ON UPDATE CASCADE,
+	--CONSTRAINT fk_id_presc_venda FOREIGN KEY (id_presc_venda) REFERENCES prescricao_venda(num_venda) ON UPDATE CASCADE ON DELETE CASCADE, /* erro */
+	CONSTRAINT fk_id_medico FOREIGN KEY (id_medico) REFERENCES medico(num_cedula) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_id_data_registo FOREIGN KEY (id_data_registo) REFERENCES d_tempo(id_tempo) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_id_inst FOREIGN KEY (id_inst) REFERENCES d_instituicao(id_inst)  ON UPDATE CASCADE ON DELETE CASCADE
 	 
 );
 
 create table f_analise(
     id_analise NUMERIC(10, 0) NOT NULL,
-    id_medico NUMERIC(10, 0) NOT NULL,
-    id_data_registo NUMERIC(10, 0) NOT NULL,
-    id_inst NUMERIC(10, 0) NOT NULL,
+    id_medico integer NOT NULL,
+    id_data_registo INTEGER NOT NULL,
+    id_inst INTEGER NOT NULL,
     CONSTRAINT pk_id_analise PRIMARY KEY (id_analise),
-    CONSTRAINT fk_id_analise FOREIGN KEY (id_analise) REFERENCES analise(num_analise),
-	CONSTRAINT fk_id_medico FOREIGN KEY (id_medico) REFERENCES medico (num_cedula),
-	CONSTRAINT fk_id_data_registo FOREIGN KEY(id_data_registo) REFERENCES d_tempo(id_tempo) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT fk_id_inst FOREIGN KEY(id_inst) REFERENCES d_instituicao(id_inst) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT fk_id_analise FOREIGN KEY (id_analise) REFERENCES analise(num_analise) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_id_medico FOREIGN KEY (id_medico) REFERENCES medico (num_cedula) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_id_data_registo FOREIGN KEY(id_data_registo) REFERENCES d_tempo(id_tempo) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT fk_id_inst FOREIGN KEY(id_inst) REFERENCES d_instituicao(id_inst) ON UPDATE CASCADE ON DELETE CASCADE
 
 );
 
