@@ -14,10 +14,10 @@ CREATE INDEX index1 ON consulta USING hash(num_doente);
 /* 
 Optamos por criar um indice bitmap com base no atributo especialidade, dado que este apenas varia entre 6 valores e
 o indice default da chave primaria (num_cedula) da tabela medico nao permite facilitar a procura por especialidade 
-
+*/
 CREATE INDEX index2 ON medico USING bitmap(especialidade); 
 
-*/
+
 
 CREATE INDEX index2 ON medico USING hash(especialidade); /* Dado não haver bitmap no postgresql */
 

@@ -12,7 +12,6 @@ create table d_tempo
 	mes NUMERIC(2,0) NOT NULL,
 	trimestre NUMERIC(1,0) NOT NULL,
 	ano NUMERIC(4,0) NOT NULL
---	CONSTRAINT pk_id_tempo PRIMARY KEY (id_tempo)
 );
 
 ALTER TABLE prescricao_venda ADD CONSTRAINT nv_unique UNIQUE(num_venda);
@@ -25,7 +24,6 @@ create table d_instituicao
 	num_regiao NUMERIC(1, 0),
 	num_concelho NUMERIC(10, 0),
 
---	CONSTRAINT pk_id_inst PRIMARY KEY (id_inst),
 	CONSTRAINT fk_nome_instituicao FOREIGN KEY(nome) REFERENCES instituicao(nome) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_num_regiao FOREIGN KEY (num_regiao) REFERENCES regiao(num_regiao) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT fk_num_concelho FOREIGN KEY (num_concelho) REFERENCES concelho(num_concelho) ON UPDATE CASCADE ON DELETE CASCADE
